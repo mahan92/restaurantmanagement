@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zomato - Food Order</title>
+
+    <!-- Bootstrap Code -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <!-- CSS Code -->
+    <style>
+        body {
+            background-image: url("https://img.freepik.com/free-photo/vegetables-set-left-black-slate_1220-685.jpg?size=626&ext=jpg&ga=GA1.2.1821626773.1677157478&semt=sph");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            height: 100vh;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+        }
+
+        /* Container for the form */
+        div#a {
+            background: rgba(0, 0, 0, 0.7);
+            font-family: cursive;
+            opacity: 0.9;
+            width: 400px;
+            height: auto;
+            padding: 30px;
+            margin-top: 50px;
+            color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            color: #ff5722;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        table td {
+            padding-top: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 15px;
+            padding: 10px;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .form-control:focus {
+            background-color: #444;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background-color: #ff5722;
+            border: none;
+            border-radius: 15px;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #e64a19;
+            transform: translateY(-2px);
+        }
+
+        .reset-btn {
+            background-color: #666;
+            border-radius: 15px;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background-color: #555;
+            transform: translateY(-2px);
+        }
+
+        /* Radio buttons & Select styling */
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        select {
+            border-radius: 15px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            width: 100%;
+        }
+
+        select:focus {
+            background-color: #444;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            div#a {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-control {
+                font-size: 0.9rem;
+            }
+
+            .btn-primary, .reset-btn {
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <center>
+        <div id="a" class="container">
+            <form method="POST" action="{% url 'zomato' %}" class="form-horizontal">
+                {% csrf_token %}
+                <h1 id="zomato">Order Here</h1>
+
+                <div class="form-group">
+                    <table>
+                        <tr>
+                            <td><label for="uname">Name:</label></td>
+                            <td><input type="text" placeholder="Example" name="uname" required class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="date">Date:</label></td>
+                            <td><input type="date" name="date" required class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">Email:</label></td>
+                            <td><input type="email" placeholder="Example@gmail.com" name="email" required class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="number">Contact Number:</label></td>
+                            <td><input type="number" placeholder="1234567890" name="number" required class="form-control"></td>
+                        </tr>
+
+                        <!-- Cuisine Selection -->
+                        <tr>
+                            <td><label>Select Cuisine:</label></td>
+                            <td>
+                                <input name="cuisine" type="radio" checked value="Non-Vegetarian" required> Non-Vegetarian
+                                <input name="cuisine" type="radio" value="Vegetarian" required> Vegetarian
+                            </td>
+                        </tr>
+
+                        <!-- Dynamic Food Options based on Cuisine -->
+         <!-- Dynamic Food Options based on Cuisine -->
+<tr id="food-options">
+    <td><label for="food">Select Food:</label></td>
+    <td>
+        <select class="form-control" name="food" required>
+            {% if cuisine == 'Vegetarian' %}
+                {% for food in vegetarian_foods %}
+                    <option value="{{ food.name }}">{{ food.name }} - ₹{{ food.price }}</option>
+                {% endfor %}
+            {% else %}
+                {% for food in non_vegetarian_foods %}
+                    <option value="{{ food.name }}">{{ food.name }} - ₹{{ food.price }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+    </td>
+</tr>
+
+                        <!-- Drinks Selection -->
+                        <tr>
+                            <td><label for="drinks">Drinks:</label></td>
+                            <td>
+                                <select class="form-control" name="drinks" id="drinks">
+                                    <option value="">Select your Drink</option>
+                                    {% for drink in drinks %}
+                                        <option value="{{ drink.id }}">{{ drink.name }} - ₹{{ drink.price }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+
+                        <!-- Soups Selection -->
+                        <tr>
+                            <td><label for="soups">Soups:</label></td>
+                            <td>
+                                <select class="form-control" name="soups" id="soups">
+                                    <option value="">Select Soups</option>
+                                    {% for soup in soups %}
+                                        <option value="{{ soup.name }}">{{ soup.name }} - ₹{{ soup.price }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+
+                        <!-- Quantity -->
+                        <tr>
+                            <td><label for="quantity">Quantity / Number of Plates:</label></td>
+                            <td><input type="number" name="quantity" id="quantity" class="form-control" min="1" required></td>
+                        </tr>
+
+                        <!-- Order Type -->
+                        <tr>
+                            <td>Order For:</td>
+                            <td>
+                                <input name="order" type="radio" value="Take Away" required> Take Away
+                                <input name="order" type="radio" value="Home Delivery" required> Home Delivery
+                            </td>
+                        </tr>
+
+                        <!-- Submit & Reset Buttons -->
+                        <tr>
+                            <td><button type="submit" class="btn btn-primary btn-block">Submit</button></td>
+                            <td><button type="reset" class="reset-btn btn-block">Reset</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </center>
+
+    <script>
+        // Dynamically update food options based on selected cuisine
+        const foodOptions = document.getElementById("food-options");
+        document.querySelectorAll("input[name='cuisine']").forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Vegetarian') {
+                    foodOptions.innerHTML = `
+                        <td><label for="food">Select Food:</label></td>
+                        <td>
+                            <select class="form-control" name="food" required>
+                                {% for food in vegetarian_foods %}
+                                    <option value="{{ food.name }}">{{ food.name }} - ₹{{ food.price }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    `;
+                } else {
+                    foodOptions.innerHTML = `
+                        <td><label for="food">Select Food:</label></td>
+                        <td>
+                            <select class="form-control" name="food" required>
+                                {% for food in non_vegetarian_foods %}
+                                    <option value="{{ food.name }}">{{ food.name }} - ₹{{ food.price }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    `;
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

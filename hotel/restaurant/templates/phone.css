@@ -1,0 +1,343 @@
+/* Reset and global settings */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+body {
+    background-color: #121212; /* Dark background for the body */
+    color: #eaeaea; /* Light text color for contrast */
+}
+
+/* Header Styling */
+#head-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: static;
+    background-color: #1f1f1f; /* Dark header background */
+    padding: 15px 0;
+}
+
+#head-container .logo {
+    width: 100%;
+    max-width: 200px;
+}
+
+#head-container nav {
+    width: 100%;
+}
+
+#head-container nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+#head-container nav ul li {
+    list-style: none;
+    padding: 0 1rem;
+    font-size: 1.6rem;
+}
+
+#head-container nav ul li a {
+    text-decoration: none;
+    color: #eaeaea; /* Light gray for text */
+    padding: 0.5rem 15px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 30px;
+}
+
+#head-container nav ul li a:hover {
+    background-color: #ff5722; /* Light orange on hover */
+    color: #121212; /* Dark text on hover */
+}
+
+/* Search Bar Styling */
+#search {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#search input {
+    width: 60%;
+    padding: 10px;
+    font-size: 1rem;
+    margin: 10px auto;
+    background-color: #333;
+    border: none;
+    border-radius: 20px;
+    color: #eaeaea;
+    transition: background-color 0.3s;
+}
+
+#search input::placeholder {
+    color: #bbb;
+}
+
+#search input:hover {
+    background-color: #444; /* Darker background on hover */
+}
+
+/* Main Section Styling */
+#main {
+    height: 445px;
+    background-image: url('https://halaladvisor.com.au/wp-content/uploads/2020/09/dolan-hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_container {
+    position: absolute;
+    z-index: 2;
+    top: 10rem;
+    text-align: center;
+}
+
+#main h6 {
+    font-size: 3rem;
+    color: #ff5722; /* Bright orange */
+}
+
+#main p {
+    font-size: 1.2rem;
+    color: #eaeaea;
+    margin-top: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    font-size: 1.2rem;
+    width: 20%;
+    padding: 15px;
+    margin-top: 30px;
+    background-color: #ff5722;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff3d00; /* Brighter red on hover */
+}
+
+/* Services Section */
+#services {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 0;
+}
+
+#services h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #ff5722; /* Light orange for heading */
+}
+
+#services .box {
+    background-color: #1f1f1f;
+    width: 90%;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    border-radius: 15px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#services .box:hover {
+    background-color: #333; /* Lighter dark background on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+#services .box img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+#services .box img:hover {
+    transform: scale(1.1); /* Slight zoom effect on image */
+}
+
+#services h2 {
+    font-size: 1.8rem;
+    color: #ff5722; /* Highlight heading */
+    margin-top: 15px;
+}
+
+#services p {
+    font-size: 1rem;
+    color: #bbb; /* Light gray text */
+}
+
+/* Client Section */
+#client {
+    background-image: url('../img/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 2rem 0;
+}
+
+.client_container {
+    display: flex;
+    overflow-x: auto;
+    padding: 1rem 10%;
+    gap: 2rem;
+    justify-content: space-between;
+}
+
+#client .box {
+    background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent box */
+    padding: 1rem;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+#client .box:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+}
+
+#client .box img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+#client .box img:hover {
+    transform: scale(1.1); /* Zoom effect on image */
+}
+
+/* Contact Section */
+#contact {
+    background-image: url('https://media.istockphoto.com/id/1311934969/photo/contact-us.jpg?b=1&s=170667a&w=0&k=20&c=2sJEN1Hhg6heUi1ZxKs6pJDwcyLYXPc4pUGd3hEjOjE=');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 2rem 0;
+}
+
+#contact form {
+    width: 90%;
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for form */
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+#contact form label,
+textarea,
+input {
+    display: block;
+    width: 100%;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #eaeaea;
+}
+
+#contact form input,
+#contact form textarea {
+    border-radius: 10px;
+    background-color: #333;
+    border: 1px solid #555;
+    color: #eaeaea;
+    padding: 1rem;
+}
+
+#contact form input::placeholder,
+#contact form textarea::placeholder {
+    color: #bbb;
+}
+
+#contact form button {
+    background-color: #ff5722;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#contact form button:hover {
+    background-color: #ff3d00; /* Brighter red on hover */
+}
+
+/* Footer Styling */
+footer {
+    background-color: #1f1f1f; /* Dark footer background */
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+footer div {
+    font-size: 1.2rem;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    #head-container {
+        flex-direction: column;
+    }
+
+    #head-container nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #search input {
+        width: 80%;
+    }
+
+    .main_container {
+        top: 5rem;
+    }
+
+    #main h6 {
+        font-size: 2.5rem;
+    }
+
+    #main p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        width: 60%;
+        font-size: 1rem;
+    }
+
+    #services .box {
+        width: 80%;
+    }
+
+    .client_container {
+        flex-direction: column;
+    }
+
+    #contact form {
+        width: 90%;
+    }
+}

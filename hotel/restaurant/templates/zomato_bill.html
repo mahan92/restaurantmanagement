@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Order Bill - Zomato</title>
+
+   <!-- Bootstrap 4 & FontAwesome for icons -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+   <style>
+      body {
+         background-color: #121212; /* Dark background */
+         font-family: 'Arial', sans-serif;
+         color: #fff; /* White text */
+         margin: 0;
+         padding: 0;
+      }
+
+      .bill-container {
+         background: #1e1e1e;
+         border-radius: 12px;
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+         padding: 30px;
+         max-width: 800px;
+         margin: 50px auto;
+         color: white;
+      }
+
+      .bill-header {
+         text-align: center;
+         margin-bottom: 30px;
+      }
+
+      .bill-header h2 {
+         font-size: 2.5rem;
+         font-weight: 700;
+         color: #ff5722; /* Accent color */
+      }
+
+      .bill-header p {
+         font-size: 1.1rem;
+         font-weight: 300;
+         color: #ccc;
+      }
+
+      /* Table Styling */
+      .table {
+         background-color: #fff; /* Light background for table */
+         border-radius: 8px;
+         color: #333; /* Dark text for readability */
+      }
+
+      .table th, .table td {
+         border: none;
+         padding: 15px;
+         font-size: 1.1rem;
+      }
+
+      .table th {
+         background-color: #ff5722; /* Accent color */
+         color: white;
+         font-weight: 600;
+      }
+
+      .table td {
+         background-color: #f4f4f4;
+         color: #333;
+      }
+
+      .table-striped tbody tr:nth-of-type(odd) {
+         background-color: #f9f9f9;
+      }
+
+      .total-row {
+         font-size: 1.2rem;
+         font-weight: 700;
+         background-color: #ff5722;
+         color: white;
+      }
+
+      .total-row td {
+         border-top: 2px solid #ff5722;
+      }
+
+      /* Button Styling */
+      .btn-back {
+         background-color: #ff5722;
+         color: white;
+         font-size: 1.1rem;
+         border-radius: 30px;
+         padding: 12px 20px;
+         text-decoration: none;
+         transition: all 0.3s ease;
+      }
+
+      .btn-back:hover {
+         background-color: #e64a19;
+         transform: translateY(-3px);
+      }
+
+      .icon {
+         font-size: 1.3rem;
+         margin-right: 8px;
+      }
+
+      .bill-footer {
+         text-align: center;
+         margin-top: 40px;
+      }
+
+      /* Hover Effect for Items */
+      .table td:hover {
+         background-color: #e0e0e0;
+         cursor: pointer;
+         transition: background-color 0.3s ease;
+      }
+
+      /* Small Screen Adjustments */
+      @media (max-width: 768px) {
+         .bill-container {
+            padding: 20px;
+            margin: 20px;
+         }
+         .bill-header h2 {
+            font-size: 2rem;
+         }
+         .table th, .table td {
+            font-size: 0.9rem;
+         }
+      }
+   </style>
+</head>
+<body>
+
+   <div class="bill-container">
+      <div class="bill-header">
+         <h2><i class="fas fa-utensils icon"></i>Zomato Order Bill</h2>
+         <p>Thank you for ordering with us! Here's your bill.</p>
+      </div>
+
+      <table class="table table-striped">
+         <thead>
+            <tr>
+               <th>Item</th>
+               <th>Quantity</th>
+               <th>Price (INR)</th>
+               <th>Total (INR)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <!-- Food Section -->
+            <tr>
+               <td><strong>{{ food.name }}</strong></td>
+               <td>{{ quantity }}</td>
+               <td>₹ {{ food_price }}</td>
+               <td>₹ {{ total_food }}</td>
+            </tr>
+
+            <!-- Drinks Section (if exists) -->
+            {% if drink %}
+            <tr>
+               <td><strong>{{ drink.name }}</strong></td>
+               <td>{{ quantity }}</td>
+               <td>₹ {{ drink_price }}</td>
+               <td>₹ {{ total_drinks }}</td>
+            </tr>
+            {% endif %}
+
+            <!-- Soups Section (if exists) -->
+            {% if soup %}
+            <tr>
+               <td><strong>{{ soup.name }}</strong></td>
+               <td>{{ quantity }}</td>
+               <td>₹ {{ soup_price }}</td>
+               <td>₹ {{ total_soups }}</td>
+            </tr>
+            {% endif %}
+
+            <!-- Subtotal, GST, and Total -->
+            <tr class="total-row">
+               <td colspan="3" class="text-right">Subtotal:</td>
+               <td>₹ {{ subtotal }}</td>
+            </tr>
+
+            <tr class="total-row">
+               <td colspan="3" class="text-right">GST (2%):</td>
+               <td>₹ {{ gst }}</td>
+            </tr>
+
+            <tr class="total-row">
+               <td colspan="3" class="text-right">Total Amount:</td>
+               <td>₹ {{ total_amount }}</td>
+            </tr>
+         </tbody>
+      </table>
+
+      <div class="bill-footer">
+         <a href="/" class="btn-back"><i class="fas fa-home icon"></i>Back to Home</a>
+      </div>
+   </div>
+
+</body>
+</html>

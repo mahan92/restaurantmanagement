@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khana</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" media="screen and (max-width: 1250px)" href="phone.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        /* Styles for the header and login button */
+       /* Reset and global settings */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+body {
+    background-color: #121212; /* Dark background for the body */
+    color: #eaeaea; /* Light text color for contrast */
+}
+
+/* Header */
+#head-container {
+    display: flex;
+    width: 100%;
+    background-color: #1f1f1f; /* Dark background for header */
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+#head-container .logo img {
+    display: block;
+    margin: auto;
+    height: 5rem;
+}
+
+#head-container nav {
+    width: 70%;
+}
+
+#head-container nav ul {
+    display: flex;
+    margin-top: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#head-container nav ul li {
+    list-style: none;
+    padding: 0 1rem;
+    font-size: 2rem;
+}
+
+#head-container nav ul li a {
+    text-decoration: none;
+    color: #eaeaea;
+    padding: 0 15px;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+#head-container nav ul li a:hover {
+    background-color: #f0f0f0;
+    color: #2d2d2d; /* Dark text on light hover */
+    border-radius: 25px;
+}
+
+/* Search bar */
+#search {
+    width: 20%;
+}
+
+#search input {
+    width: 80%;
+    text-align: center;
+    margin: 20px 0 0 0;
+    height: 2rem;
+    border-radius: 20px;
+    font-size: medium;
+    background-color: #333;
+    color: #eaeaea;
+    border: 1px solid #555;
+}
+
+#search input::placeholder {
+    color: #bbb;
+}
+
+/* Main section */
+#main {
+    background-image: url('https://halaladvisor.com.au/wp-content/uploads/2020/09/dolan-hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index: 2;
+    top: 10rem;
+    text-align: center;
+}
+
+#main h6 {
+    font-size: 3rem;
+    color: #da1f1f;
+}
+
+#one {
+    background-color: #ff5722; /* Dark orange-red for buttons */
+    font-size: 1.5rem;
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+#one:hover {
+    background-color: #ff3d00; /* Brighter red on hover */
+}
+
+/* Service section */
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 2rem;
+    color: #ff5722;
+}
+
+#services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+#services .box {
+    background-color: #1e1e1e;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    transition: background-color 0.3s ease;
+}
+
+#services .box:hover {
+    background-color: #333;
+}
+
+#services .box img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+#services h2 {
+    font-size: 1.8rem;
+    color: #ff5722;
+}
+
+#services p {
+    font-size: 1.2rem;
+    color: #bbb;
+}
+
+/* Client section */
+#client {
+    background-image: url('../img/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    width: 100%;
+    height: 350px;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.client_container {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    top: 4rem;
+    left: 10%;
+    right: 10%;
+    justify-content: space-between;
+}
+
+#client .box {
+    padding: 0 2rem;
+    margin: 2rem 2rem;
+}
+
+#client .box img {
+    width: 10rem;
+    height: 10rem;
+    transition: transform 0.3s ease;
+}
+
+#client .box img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Contact section */
+#contact {
+    background-image: url('https://media.istockphoto.com/id/1311934969/photo/contact-us.jpg?b=1&s=170667a&w=0&k=20&c=2sJEN1Hhg6heUi1ZxKs6pJDwcyLYXPc4pUGd3hEjOjE=');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 1rem 0;
+}
+
+#contact form {
+    width: 50%;
+    margin: 1rem auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark form background */
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+#contact form label,
+textarea,
+input {
+    display: block;
+    width: 100%;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #eaeaea;
+}
+
+#contact form input,
+#contact form textarea {
+    border-radius: 0.8rem;
+    background-color: #333;
+    border: 1px solid #555;
+    color: #eaeaea;
+    padding: 1rem;
+}
+
+#contact form input::placeholder,
+#contact form textarea::placeholder {
+    color: #bbb;
+}
+
+#contact form button {
+    background-color: #ff5722;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#contact form button:hover {
+    background-color: #ff3d00; /* Brighter red on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #1f1f1f; /* Dark footer background */
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+footer div {
+    font-size: 1.2rem;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    #head-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #head-container nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #search input {
+        width: 80%;
+    }
+
+    .main_container {
+        top: 5rem;
+    }
+
+    #main h6 {
+        font-size: 2.5rem;
+    }
+
+    #main p {
+        font-size: 1rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        width: 80%;
+        height: 40px;
+        margin-top: 3rem;
+    }
+
+    #services .box {
+        width: 90%;
+    }
+
+    .client_container {
+        flex-direction: column;
+    }
+
+    #contact form {
+        width: 90%;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <header id="head-container">
+        <div class="logo">
+            <img src="https://img.freepik.com/premium-vector/gold-healthy-food-icon-vector-illustration-two-forks-heart-shape_118339-1069.jpg?w=2000" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#scroll_services">Service</a></li>
+                <li><a href="#scroll_clients">Clients</a></li>
+                <li><a href="#scroll_contact">Contact</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+        <div id="search">
+            <input type="text" name="search" placeholder="Search">
+        </div>
+
+                <div class="branch-name">{{ branch_name }}</div>
+
+    </header>
+
+    <div id="main">
+        <div class="overlay"></div>
+        <div class="main_container">
+            <h6>Welcome to Mahendra Restaurant</h6>
+            <p>Food brings people together on many different levels. It’s nourishment of the soul and body; it’s truly love ⬇️</p>
+            <br><br>
+            <a href="zomato.html" id="one"><span>Order Now</span></a>
+        </div>
+    </div>
+
+    <h1 id="scroll_services">Our Services</h1>
+    <div id="services">
+        <div class="box" data-aos="fade-left">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIww3ydX26Nfun5iXxfZVYJ_kgYU27YN-2JbO-k52OTEH7o3ZN1POZZtujL7i5DDcJLxI&usqp=CAU" alt="">
+            <h2>Food Catering</h2>
+            <p>Food catering is always an essential ingredient for any party, corporate event, wedding event, family reunions or baby showers. When your guests attend your event, they will expect to be served with delicious and good food.</p>
+        </div>
+        <div class="box" data-aos="fade-down">
+            <img src="https://www.decornt.com/images/bulk_order.png" alt="" height="200px" width="300px">
+            <h2>Bulk Ordering</h2>
+            <p>Food catering is always an essential ingredient for any party, corporate event, wedding event, family reunions or baby showers. When your guests attend your event, they will expect to be served with delicious and good food.</p>
+        </div>
+        <div class="box" data-aos="fade-right">
+            <img src="https://thumbs.dreamstime.com/b/food-delivery-man-delivering-food-scooter-food-delivery-man-delivering-food-scooter-isolated-white-background-176181732.jpg" alt="" height="200px" width="300px">
+            <h2>Food Ordering</h2>
+            <p>Food catering is always an essential ingredient for any party, corporate event, wedding event, family reunions or baby showers. When your guests attend your event, they will expect to be served with delicious and good food.</p>
+        </div>
+    </div>
+
+    <h1 id="scroll_clients">Our Clients</h1>
+    <div id="client">
+        <div class="overlay"></div>
+        <div class="client_container">
+            <div class="box">
+                <a href="https://www.zomato.com/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Zomato_logo.png" alt="clients"></a>
+            </div>
+            <div class="box">
+                <a href="https://www.foodpanda.com/" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdtb-XID0x4c1YolP7S4GLLJvnQlHLhWM1cwBmWF_qa_yGrc4CJfXbi3QcBP6Ra7TvUjM&usqp=CAU" alt="clients"></a>
+            </div>
+            <div class="box">
+                <a href="https://www.swiggy.com/" target="_blank"><img src="https://st.adda247.com/https://wpassets.adda247.com/wp-content/uploads/multisite/sites/5/2022/05/16165408/swiggy.jpeg" alt="clients"></a>
+            </div>
+            <div class="box">
+                <a href="https://www.ubereats.com/" target="_blank"><img src="https://seeklogo.com/images/U/uber-eats-logo-65D72FAA4C-seeklogo.com.png" alt="clients"></a>
+            </div>
+        </div>
+    </div>
+
+    <h1 id="scroll_contact" style="font-size: 30px;font-size: 50px;">Contact</h1>
+    <div id="contact">
+        <form method="post" action="">
+            {% csrf_token %}
+            <label for="name" style="color:whitesmoke">Name:</label>
+            <input type="text" id="name2" name="name2" placeholder="Enter your name" pattern="[a-zA-Z]{2,15}" required title="Enter valid name">
+            <label for="email" style="color:whitesmoke">Email:</label>
+            <input type="email" id="email2" name="email2" placeholder="Enter your email" pattern="[a-zA-Z0-9$%&*]+@[a-z]+.[a-z]{3,10}" title="Invalid Email...!!">
+            <label for="phone" style="color:whitesmoke">Phone Number:</label>
+            <input type="phone" id="phone2" name="phone2" placeholder="Enter your phone" pattern="^[6-9]{1}[0-9]{9}$" title="Enter valid Phone_number">
+            <br><br>
+            <button type="submit" class="btn btn-primary" class="center">SUBMIT</button>
+        </form>
+    </div>
+
+    <footer>
+        <div>
+            Copyright © www.quadgen.com. All rights reserved!
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 180,
+            duration: 1500
+        });
+    </script>
+ <script>
+        // Disable right-click (context menu)
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // Prevent the default right-click menu
+        });
+    </script>
+</body>
+
+</html>
